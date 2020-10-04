@@ -1,15 +1,25 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { CreateDogDto } from './dogs.dto';
+import { DogsService } from './dogs.service';
+import { Dog } from './dogs.model';
 
 @Controller('dogs')
 export class DogsController {
+  constructor(
+    private dogsService: DogsService
+  ) {}
+
   @Get()
-  findAll(): string {
-    return 'this is dog GET';
+  async findAll(): Promise<Dog[]> {
+    const dogs = await this.dogsService.findAll();
+
+    return dogs;
   }
 
   @Post()
-  createDog(@Body() dog: CreateDogDto) {
-    console.log(dog);
+  async createDog(@Body() dog: CreateDogDto): Promise<Dog> {
+    const createdDog = await this.dogsService.createOne(dog);
+
+    return createdDog;
   }
 }

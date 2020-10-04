@@ -1,9 +1,20 @@
 import { Module } from '@nestjs/common';
-import { DogsController } from './dogs/dogs.controller';
+import { ConfigModule } from '@nestjs/config';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { DogsModule } from './dogs/dogs.module';
 
 @Module({
-  imports: [],
-  controllers: [DogsController],
-  providers: [],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    SequelizeModule.forRoot({
+      dialect: 'postgres',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      database: process.env.DB_NAME,
+      autoLoadModels: true,
+      synchronize: true
+    }),
+    DogsModule
+  ]
 })
 export class AppModule {}
