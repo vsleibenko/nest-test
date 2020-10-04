@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { CreateDogDto } from './dogs.dto';
+import { CreateDogDto, DogDto } from './dogs.dto';
 import { DogsService } from './dogs.service';
 import { Dog } from './dogs.model';
 
@@ -10,7 +10,7 @@ export class DogsController {
   ) {}
 
   @Get()
-  async findAll(): Promise<Dog[]> {
+  async findAll(): Promise<DogDto[]> {
     const dogs = await this.dogsService.findAll();
 
     return dogs;
