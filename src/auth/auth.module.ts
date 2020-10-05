@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from './users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { SessionModule } from './session/session.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { AuthService } from './auth.service';
         expiresIn: 30 * 60
       }
     }),
-    UsersModule
+    UsersModule,
+    SessionModule
   ],
   controllers: [AuthController],
   providers: [AuthService]
