@@ -14,5 +14,5 @@ export class User extends Model {
 
   @AllowNull(false)
   @Column
-  password: number;
+  password: string;
 }

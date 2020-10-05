@@ -18,4 +18,12 @@ export class UsersService {
       defaults: { password } 
     }); 
   }
+
+  get(): Promise<User[]> {
+    return this.UserModel.findAll({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt']
+      }
+    });
+  }
 }
