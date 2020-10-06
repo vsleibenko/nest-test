@@ -1,4 +1,5 @@
 import { Controller, Post, Body, Get, HttpException, Res } from '@nestjs/common';
+import { ApiCreatedResponse } from '@nestjs/swagger';
 import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { UsersService } from './users/users.service';
@@ -27,6 +28,7 @@ export class AuthController {
     return users;
   }
 
+  @ApiCreatedResponse({ type: LoginSuccessDto })
   @Post('login')
   async login(@Body() user: LoginUserDto, @Res() res: Response): Promise<void> {
     const userFound: UserDto = await this.usersService.findOne(user);
@@ -56,6 +58,6 @@ export class AuthController {
       path: '/auth'
     });
 
-    res.send({ accessToken });
+    res.status(201).send({ accessToken });
   }
 }
