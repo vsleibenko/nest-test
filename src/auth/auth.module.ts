@@ -8,9 +8,9 @@ import { SessionModule } from './session/session.module';
 @Module({
   imports: [
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: `${process.env.JWT_SECRET}`,
       signOptions: {
-        expiresIn: 30 * 60
+        expiresIn: 10 * 60
       }
     }),
     UsersModule,

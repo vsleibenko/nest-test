@@ -1,8 +1,9 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateDogDto, DogDto } from './dogs.dto';
 import { DogsService } from './dogs.service';
-import { Dog } from './dogs.model';
 
+@ApiTags('dogs')
 @Controller('dogs')
 export class DogsController {
   constructor(
@@ -17,7 +18,7 @@ export class DogsController {
   }
 
   @Post()
-  async createDog(@Body() dog: CreateDogDto): Promise<Dog> {
+  async createDog(@Body() dog: CreateDogDto): Promise<DogDto> {
     const createdDog = await this.dogsService.createOne(dog);
 
     return createdDog;

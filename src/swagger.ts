@@ -6,7 +6,6 @@ export class Swagger {
     .setTitle('Dogs example')
     .setDescription('The dogs API description')
     .setVersion('1.0')
-    .addTag('dogs')
     .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);

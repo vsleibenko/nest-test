@@ -8,3 +8,13 @@ export class UserDto {
   email: string;
   password: string;
 }
+
+export class LoginUserDto {
+  email: string;
+  password: string;
+  fingerprint: string;
+}
+
+export class LoginSuccessDto {
+  accessToken: string;
+}

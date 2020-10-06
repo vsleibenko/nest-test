@@ -7,11 +7,11 @@ import { CreateUserDto } from './users.dto';
 export class UsersService {
   constructor(
     @InjectModel(User)
-    private UserModel: typeof User
+    private userModel: typeof User
   ) {}
 
   create({ email, password }: CreateUserDto): Promise<[User, boolean]> {
-    return this.UserModel.findOrCreate({
+    return this.userModel.findOrCreate({
       where: {
         email
       },
@@ -20,10 +20,18 @@ export class UsersService {
   }
 
   get(): Promise<User[]> {
-    return this.UserModel.findAll({
+    return this.userModel.findAll({
       attributes: {
         exclude: ['createdAt', 'updatedAt']
       }
     });
+  }
+
+  findOne({ email, password }: CreateUserDto): Promise<User> {
+    return this.userModel.findOne({
+      where: {
+        email, password
+      }
+    })
   }
 }

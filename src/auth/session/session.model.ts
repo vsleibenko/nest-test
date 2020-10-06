@@ -12,14 +12,14 @@ export class Session extends Model {
   userId: number;
 
   @AllowNull(false)
-  @Column
-  refreshToken: typeof DataType.UUIDV4;
+  @Column(DataType.UUID)
+  refreshToken: string;
 
   @AllowNull(false)
   @Column
   fingerprint: string;
 
   @AllowNull(false)
-  @Column
-  expiresIn: bigint;
+  @Column(DataType.BIGINT)
+  expiresIn: number;
 }
