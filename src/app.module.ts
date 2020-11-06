@@ -17,6 +17,6 @@ import { AuthModule } from './auth/auth.module';
     }),
     DogsModule,
     AuthModule
-  ]
+  ],
 })
 export class AppModule {}

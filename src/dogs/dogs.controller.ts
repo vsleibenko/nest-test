@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateDogDto, DogDto } from './dogs.dto';
 import { DogsService } from './dogs.service';
+import { AuthGuard } from '../guards/auth.guard'; 
 
 @ApiTags('dogs')
+@UseGuards(AuthGuard)
 @Controller('dogs')
 export class DogsController {
   constructor(

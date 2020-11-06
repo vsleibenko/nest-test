@@ -39,6 +39,12 @@ export class AuthController {
 
     const accessToken = await this.jwtService.signAsync({ userId: userFound.id });
 
+    console.log(accessToken);
+
+    const decoded = await this.jwtService.verifyAsync(accessToken);
+
+    console.log(decoded);
+
     res.cookie('refreshToken', session.refreshToken, {
       signed: true,
       httpOnly: true,
